@@ -8,8 +8,8 @@ engine = webdriver.Chrome()
 engine.get('https://www.instagram.com/')
 sleep(3)
 
-user_name = "r_i_s_h_i_09"
-passwd = "rishisarmah4@"
+user_name = ""
+passwd = ""
 
 uid = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[2]/div/label/input').send_keys(user_name)
 passwd = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[3]/div/label/input').send_keys(passwd)
