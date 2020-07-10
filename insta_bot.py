@@ -8,8 +8,11 @@ engine = webdriver.Chrome()
 engine.get('https://www.instagram.com/')
 sleep(3)
 
-uid = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[2]/div/label/input').send_keys("")
-passwd = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[3]/div/label/input').send_keys("")
+user_name = "r_i_s_h_i_09"
+passwd = "rishisarmah4@"
+
+uid = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[2]/div/label/input').send_keys(user_name)
+passwd = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[3]/div/label/input').send_keys(passwd)
 btn = engine.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div/form/div[4]/button').click()
 sleep(5)
 
@@ -23,6 +26,15 @@ main_win = engine.current_window_handle
 
 pofile = engine.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a').click()
 sleep(2)
+
+def blue_tick():
+    holder = engine.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]')
+    try:
+        bluetick = holder.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/span')
+        return True
+    except Exception as e:
+        return False
+
 
 def get_followers():
     follower = engine.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/ul/li[2]/a').click()
@@ -90,13 +102,15 @@ for name in not_following:
     unfollower = popup.find_element_by_tag_name('a').click()
     sleep(2)
 
-    unfollow_btn = engine.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button/div/span').click()
-    sleep(2)
-    unfollow_popup = engine.find_element_by_xpath('/html/body/div[4]/div/div/div')
-    engine.execute_script('arguments[0].scrollIntoView()', unfollow_popup)
-    unfollow = unfollow_popup.find_element_by_xpath('/html/body/div[4]/div/div/div/div[3]/button[1]').click()
-    print("Successfuly Unfollowed"+ name)
-    sleep(2)
+    verification = blue_tick()
+    if not verification:
+        unfollow_btn = engine.find_element_by_xpath('/html/body/div[1]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button/div/span').click()
+        sleep(2)
+        unfollow_popup = engine.find_element_by_xpath('/html/body/div[4]/div/div/div')
+        engine.execute_script('arguments[0].scrollIntoView()', unfollow_popup)
+        unfollow = unfollow_popup.find_element_by_xpath('/html/body/div[4]/div/div/div/div[3]/button[1]').click()
+        print("Successfuly Unfollowed"+ name)
+        sleep(2)
 
 engine.close()
 
