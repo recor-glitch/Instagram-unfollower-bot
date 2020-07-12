@@ -24,7 +24,7 @@ sleep(2)
 
 main_win = engine.current_window_handle
 
-pofile = engine.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[5]/a').click()
+pofile = engine.find_element_by_xpath('/html/body/div[1]/section/main/section/div[3]/div[1]/div/div[2]/div[1]/a').click()
 sleep(2)
 
 def blue_tick():
@@ -109,7 +109,7 @@ for name in not_following:
         unfollow_popup = engine.find_element_by_xpath('/html/body/div[4]/div/div/div')
         engine.execute_script('arguments[0].scrollIntoView()', unfollow_popup)
         unfollow = unfollow_popup.find_element_by_xpath('/html/body/div[4]/div/div/div/div[3]/button[1]').click()
-        print("Successfuly Unfollowed"+ name)
+        print("Successfuly Unfollowed:" + name)
         sleep(2)
 
 engine.close()
